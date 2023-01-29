@@ -1,0 +1,63 @@
+CREATE TABLE `student_information` (
+  `student_id` varchar(3) NOT NULL,
+  `student_name` varchar(50) NOT NULL,
+  `student_major` varchar(30) NOT NULL,
+  `student_room` varchar(50) NOT NULL,
+  `student_dormitory` varchar(50) NOT NULL,
+  `student_room` varchar(50) NOT NULL,
+  `student_active` varchar(1) NOT NULL DEFAULT 'Y',
+  `student_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `student_information`
+  ADD PRIMARY KEY (`student_id`);
+
+CREATE TABLE `img_dataset` (
+  `img_id` int(11) NOT NULL,
+  `img_person` varchar(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `img_dataset`
+  ADD PRIMARY KEY (`img_id`);
+
+CREATE TABLE `check_in` (
+  `enter_id` int(11) NOT NULL AUTO_INCREMENT,
+  `enter_date` date NOT NULL,
+  `enter_number` varchar(3) NOT NULL,
+  `enter_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`enter_id`),
+  KEY `enter_date` (`enter_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `check_out` (
+  `out_id` int(11) NOT NULL AUTO_INCREMENT,
+  `out_date` date NOT NULL,
+  `out_number` varchar(3) NOT NULL,
+  `out_added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`out_id`),
+  KEY `out_date` (`out_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `unknow` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `createdAt` (`createdAt`)
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SELECT check_in.enter_date,student_information.student_name FROM `check_in` 
+INNER JOIN student_information on check_in.enter_number = student_information.student_id

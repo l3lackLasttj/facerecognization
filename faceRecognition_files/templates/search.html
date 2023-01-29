@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>ค้นหารายชื่อ</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css"
+    />
+  </head>
+  <script></script>
+  <body>
+    <br />
+    <div class="container">
+      <h2 align="center">ค้นหารายชื่อ</h2>
+      <br />
+      <div class="row">
+        <div class="col-md-2">
+          <input
+            type="text"
+            name="From"
+            id="From"
+            class="form-control"
+            placeholder="From Date"
+          />
+        </div>
+        <div class="col-md-2">
+          <input
+            type="text"
+            name="to"
+            id="to"
+            class="form-control"
+            placeholder="To Date"
+          />
+        </div>
+        <div class="col-md-8">
+          <input
+            type="button"
+            name="range"
+            id="range"
+            value="Search"
+            class="btn btn-success"
+          />
+        </div>
+        <div class="clearfix"></div>
+        <br />
+      </div>
+      <div id="range">
+        <table class="table table-bordered">
+          <tr>
+            <th width="20%">ID</th>
+            <th width="20%">ชื่อ</th>
+            <th width="20%">สาขา</th>
+            <th width="20%">ห้อง</th>
+            <th width="20%">วันที่เพิ่มรายชื่อ</th>
+          </tr>
+          {% for item in data %}
+              <tr>
+                <td>{{item[0]}}</td>
+                <td>{{item[1]}}</td>
+                <td>{{item[2]}}</td>
+                <td>{{item[3]}}</td>
+                <td>{{item[4]}}</td>
+              </tr>
+              {% endfor %}
+        </table>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $(document).ready(function () {
+        $.datepicker.setDefaults({
+          dateFormat: "yy-mm-dd",
+        });
+        $(function () {
+          $("#From").datepicker();
+          $("#to").datepicker();
+        });
+        $("#range").click(function () {
+          var From = $("#From").val();
+          var to = $("#to").val();
+          if (From != "" && to != "") {
+            $.ajax({
+              url: "/range",
+              method: "POST",
+              data: { From: From, to: to },
+              success: function (data) {
+                $("#range").html(data);
+                $("#range").append(data.htmlresponse);
+              },
+            });
+          } else {
+            alert("Please Select the Date");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

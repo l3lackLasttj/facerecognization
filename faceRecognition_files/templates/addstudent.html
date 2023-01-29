@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "head.html" %}
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<section class="py-1">
+    <div class="row mt-5">
+        <div class="col-lg-8 offset-lg-2">
+            <h3>เพิ่มรายชื่อ</h3>
+            <hr>
+            <form class="form" method="post" action="/addstudent_major">
+                <div class="form-group row">
+                    <label for="txtid" class="col-sm-2 col-form-label">รหัสนักศึกษา</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="txtid" name="txtid" value={{ newid }} readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtname" class="col-sm-2 col-form-label">ชื่อ</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="txtname" name="txtname" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="dormitory" class="col-sm-2 col-form-label">หอพัก</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="dormitory" name="dormitory" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="room" class="col-sm-2 col-form-label">ห้องพัก</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="room" name="room" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="major" class="col-sm-2 col-form-label">สาขา</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" name="major" id="major">
+                            <option value="SOFTWARE">Software</option>
+                            <option value="HARDWARE">Hardware</option>
+                            <option value="ELECTRICAL">Electrical</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-8">
+                        <input type="submit" class="btn btn-primary btn-xl" value="สร้าง">
+                        <a href="/" type="button" class="btn btn-danger btn-xl"><b>ยกเลิก</b></a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

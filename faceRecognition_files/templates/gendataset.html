@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include "head.html" %}
+  </head>
+  <body>
+    {% include "navbar.html" %}
+
+    <div class="container">
+      <section class="py-1">
+        <div class="row mt-5">
+          <div class="col-md-3 offset-lg-2">
+            <h3>Generate Dataset {{ student }}</h3>
+            <hr />
+            <img
+              src="{{ url_for('vidfeed_dataset', id=student) }}"
+              width="100%"
+              class="img-thumbnail"
+            />
+          </div>
+        </div>
+
+        <br />
+        <div class="row">
+          <div class="col-md-3 offset-lg-2">
+            <a
+              class="btn btn-warning btn-lg"
+              href="{{ url_for('train_classifier', id=student) }}"
+            >
+              ยอมรับการเทรนข้อมูล
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
